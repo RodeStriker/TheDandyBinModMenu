@@ -1,0 +1,105 @@
+-- Variables
+
+-- Player Variables
+local plr = Game.Players.LocalPlayer
+local char = plr.Character
+local hum = char:WaitForChild("Humanoid")
+
+-- WalkSpeed Variables
+
+-- ModMenu / GUI
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Rayfield Example Window",
+   LoadingTitle = "Rayfield Interface Suite",
+   LoadingSubtitle = "by Sirius",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local CSTab = Window:CreateTab("Client Sided", 4483362458) -- Title, Image
+local SSTab = Window:CreateTab("Server Sided", 4483362458)
+local ESPTab = Window:CreateTab("ESP", 4483362458)
+local ATab = Window:CreateTab("Animations", 4483362458)
+
+-- ClientSided GUI
+local PSsection = CSTab:CreateSection("Player Settings")
+
+local TSParagraph = CSTab:CreateParagraph({Title = "Toon Speeds", Content = "1 star: 10/20 | 2 star: 12.5/22.5 | 3 star: 15/25 | 4 star: 17.5/27.5 | 5 star: 20/30"})
+
+local WSslider = CSTab:CreateSlider({
+   Name = "Change WalkSpeed",
+   Range = {10, 75},
+   Increment = 2.5,
+   Suffix = "Speed",
+   CurrentValue = 10,
+   Flag = "CWSslider", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+       hum.WalkSpeed = Value
+   end,
+})
+
+-- ESP GUI
+
+local Toggle = ESPTab:CreateToggle({
+   Name = "Item ESP (WIP)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+--ServerSided
+local LobbySection = SSTab:CreateSection("Lobby")
+
+local CodesButton = SSTab:CreateButton({
+   Name = "Redeem All Codes",
+   Callback = function()
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("SKINTICKET")
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("2HUNDREDMILLION")
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("HUNDREDMILLION")
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("FIFTYMILLION")
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("TENMILLION")
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("ONETHOUSAND")
+      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("ICHOR")
+   end,
+})
+
+local DandyButton = SSTab:CreateButton({
+   Name = "Give Dandy",
+   Callback = function()
+      local p = game.Players.LocalPlayer.UserId
+
+local dandy = Instance.new("StringValue")
+dandy.Name = "Dandy"
+dandy.Parent = game.ReplicatedStorage.PlayerData:FindFirstChild(p)
+dandy.Value = "Default"
+
+game:GetService("Players").LocalPlayer:Kick("Dandy Has Been Given, Rejoin Game.")
+   end,
+})
+
+-- Animations GUI
+local LobbySection = ATab:CreateSection("Toons")
