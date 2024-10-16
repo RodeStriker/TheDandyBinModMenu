@@ -1,120 +1,13 @@
-getgenv().SecureMode = true
 
---Variables
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.8) ~  Much Love, Ferib 
 
--- Player Variables
-local plr = Game.Players.LocalPlayer
-local char = plr.Character
-local hum = char:WaitForChild("Humanoid")
+]]--
 
--- AnyStarterToon Variables
-local Toon = "Astro"
-
-local ArrayField = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/ArrayField/main/Source.lua'))()
-
-local Window = ArrayField:CreateWindow({
-   Name = "The Dandy Bin ModMenu",
-   LoadingTitle = "The Dandy Bin Team Presents",
-   LoadingSubtitle = "by RodeStriker",
-   ConfigurationSaving = {
-      Enabled = false,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "TDB ModMenu"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "dandysworldexploits", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
-   KeySystem = false, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided",
-      FileName = "Key", -- It is recommended to use something unique as other scripts using ArrayField may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like ArrayField to get the key from
-      Actions = {
-            [1] = {
-                Text = 'Click here to copy the key link <--',
-                OnPress = function()
-                    print('Pressed')
-                end,
-                }
-            },
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
-
-local WelcomeTab = Window:CreateTab("Welcome", 4483362458) -- Title, Image
-local LobbyTab = Window:CreateTab("Lobby", 4483362458)
-local CSTab = Window:CreateTab("Client Sided", 4483362458)
-local SSTab = Window:CreateTab("ServerSided", 4483362458)
-
--- Welcome Tab
-
--- Lobby Tab
-local ASTLabel = LobbyTab:CreateLabel("Any Starter Toon")
-
-local ASTDropdown = LobbyTab:CreateDropdown({
-   Name = "Pick a Starter Toon | A-Z",
-   Options = {"Astro", "Boxten", "Brightney", "Cosmo", "Finn", "Flutter", "Gigi", "Glisten", "Goob", "Pebble", "Poppy", "Razzle & Dazzle", "Rodger", "Scraps", "Shelly", "Shrimpo", "Sprout", "Teagan", "Tisha", "Toodles","Vee"},
-   CurrentOption = {"Astro"},
-   MultipleOptions = false,
-   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Option)
-      print(Option)
-      Toon = Option
-   end,
-})
-
-local ASTButton = LobbyTab:CreateButton({
-   Name = "Redeem Starter Toon",
-   Callback = function()
-   local args = {
-         [1] = Toon
-      }
-
-      game:GetService("ReplicatedStorage"):WaitForChild("EarnTutorialTower"):InvokeServer(unpack(args))
-      game:GetService("ReplicatedStorage"):WaitForChild("CheckTutorial"):InvokeServer()
-      wait(.5)
-      hum.Health = 0
-   end,
-})
-
-local Button = LobbyTab:CreateButton({
-   Name = "Redeem Codes | 2200 Ichor",
-   Callback = function()
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("SKINTICKET")
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("2HUNDREDMILLION")
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("HUNDREDMILLION")
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("FIFTYMILLION")
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("TENMILLION")
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("ONETHOUSAND")
-      game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("ICHOR")
-   end,
-})
-
--- Client Sided Tab
-local PSLabel = CSTab:CreateLabel("Player Settings")
-
-local PSslider = CSTab:CreateSlider({
-   Name = "Change WalkSpeed",
-   Range = {10, 125},
-   Increment = 2.5,
-   Suffix = "Speed",
-   CurrentValue = 15,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-      while wait(0) do
-         hum.WalkSpeed = Value
-      end
-   end,
-})
-
-local DandyButton = CSTab:CreateButton({
-   Name = "Give Dandy",
-   Callback = function()
-      game:GetService("Players").LocalPlayer:Kick("Dandy Has Been Given, Rejoin Game.")
-   end,
-})
+getgenv().SecureMode=true;local v1=game.Players.LocalPlayer;local v2=v1.Character or v1.CharacterAdded:Wait() ;local v3=v2:WaitForChild("Humanoid");local v4="Astro";local v5;local v6=false;local v7=false;local v8=50;local v9=0.75;local v10=1530 -(568 + 962) ;local v11=Vector3.new(23 -15 ,2 -1 ,2 + 6 );local v12=1;local v13=false;local v14=1;local v15=false;local v16=false;local v17=false;local v18=false;local v19;local function v20() if v5 then v5:Destroy();end v5=Instance.new("Part");v5.Size=v11;v5.Anchored=true;v5.Transparency=v9;v5.CanCollide=true;v5.Position=v2.HumanoidRootPart.Position-Vector3.new(1954 -(508 + 1446) ,v3.HipHeight + 1 + 0 ,0) ;v5.Parent=workspace;end local function v21() if v6 then local v74=0;while true do if (v74==0) then v5.Position=Vector3.new(v2.HumanoidRootPart.Position.X,v5.Position.Y,v2.HumanoidRootPart.Position.Z);if v13 then local v109=997 -(915 + 82) ;local v110;while true do if (v109==(0 -0)) then v110=v5.Position + Vector3.new(0,v3.HipHeight,0 + 0 ) ;v2.HumanoidRootPart.CFrame=CFrame.new(v110);break;end end end break;end end end end local function v22() if v5 then v5.Velocity=Vector3.new(0 -0 , -v10,0);end end local function v23(v58) if v5 then local v76=v5.Position.Y + (v58 * v12) ;v5.Position=Vector3.new(v5.Position.X,v76,v5.Position.Z);end end local function v24() if v5 then if v16 then v23(1188 -(1069 + 118) );elseif v17 then v23( -(2 -1));end end end local function v25() if v19 then v19:Destroy();end if v7 then local v78=0 -0 ;local v79;local v80;while true do if (v78==2) then v79.BackgroundColor3=Color3.fromRGB(0,255,0 + 0 );v79.TextSize=v8/(3 -1) ;v79.TextScaled=true;v78=3 + 0 ;end if (v78==8) then v80.ZIndex=793 -(368 + 423) ;v79.MouseButton1Down:Connect(function() v16=true;end);v79.MouseButton1Up:Connect(function() v16=false;end);v78=28 -19 ;end if (v78==(19 -(10 + 8))) then v79.Position=UDim2.new(0 -0 ,452 -(416 + 26) ,0.5 -0 , -v8-(5 + 5) );v79.BackgroundTransparency=0.5 -0 ;v79.Text="ðŸ”¼";v78=440 -(145 + 293) ;end if (v78==4) then v79.ZIndex=432 -(44 + 386) ;v80=Instance.new("TextButton",v19);v80.Size=UDim2.new(0,v8,1486 -(998 + 488) ,v8);v78=2 + 3 ;end if (v78==(5 + 1)) then v80.BackgroundColor3=Color3.fromRGB(1027 -(201 + 571) ,1138 -(116 + 1022) ,0);v80.TextSize=v8/(8 -6) ;v80.TextScaled=true;v78=7;end if (v78==(6 + 3)) then v80.MouseButton1Down:Connect(function() v17=true;end);v80.MouseButton1Up:Connect(function() v17=false;end);break;end if (v78==(25 -18)) then v80.Font=Enum.Font.GothamBold;v80.BorderSizePixel=0 -0 ;v80.TextColor3=Color3.new(860 -(814 + 45) ,2 -1 ,1 + 0 );v78=3 + 5 ;end if (v78==(885 -(261 + 624))) then v19=Instance.new("ScreenGui",v1.PlayerGui);v79=Instance.new("TextButton",v19);v79.Size=UDim2.new(0 -0 ,v8,1080 -(1020 + 60) ,v8);v78=1;end if (v78==5) then v80.Position=UDim2.new(1423 -(630 + 793) ,33 -23 ,0.5 -0 ,4 + 6 );v80.BackgroundTransparency=0.5;v80.Text="ðŸ”½";v78=20 -14 ;end if (v78==3) then v79.Font=Enum.Font.GothamBold;v79.BorderSizePixel=1747 -(760 + 987) ;v79.TextColor3=Color3.new(1,1,1914 -(1789 + 124) );v78=4;end end end end local v26=game:GetService("UserInputService");v26.InputBegan:Connect(function(v59) if v6 then if (v59.KeyCode==Enum.KeyCode.Q) then v17=true;elseif (v59.KeyCode==Enum.KeyCode.E) then v16=true;end end end);v26.InputEnded:Connect(function(v60) if (v60.KeyCode==Enum.KeyCode.Q) then v17=false;elseif (v60.KeyCode==Enum.KeyCode.E) then v16=false;end end);local v27=loadstring(game:HttpGet("https://raw.githubusercontent.com/UI-Interface/ArrayField/main/Source.lua"))();local v28=v27:CreateWindow({Name="The Dandy Bin ModMenu",LoadingTitle="The Dandy Bin Team Presents",LoadingSubtitle="by RodeStriker",ConfigurationSaving={Enabled=false,FolderName=nil,FileName="TDB ModMenu"},Discord={Enabled=false,Invite="dandysworldexploits",RememberJoins=true},KeySystem=false,KeySettings={Title="Untitled",Subtitle="Key System",Note="No method of obtaining the key is provided",FileName="Key",SaveKey=true,GrabKeyFromSite=false,Actions={[1]={Text="Click here to copy the key link <--",OnPress=function() print("Pressed");end}},Key={"Hello"}}});local v29=v28:CreateTab("Welcome",4483363224 -(745 + 21) );local v30=v28:CreateTab("Lobby",4352867776 -  -130494682 );local v31=v28:CreateTab("Client Sided",4483362458 -0 );local v32=v28:CreateTab("ServerSided",4699127842 -215765384 );local v33=v28:CreateTab("Credits",4483362458);local v34=v29:CreateLabel("Welcome!");local v35=v30:CreateLabel("Any Starter Toon");local v36=v30:CreateDropdown({Name="Pick a Starter Toon | A-Z",Options={"Astro","Boxten","Brightney","Cosmo","Finn","Flutter","Gigi","Glisten","Goob","Pebble","Poppy","Razzle & Dazzle","Rodger","Scraps","Shelly","Shrimpo","Sprout","Teagan","Tisha","Toodles","Vee"},CurrentOption={"Astro"},MultipleOptions=false,Flag="Dropdown1",Callback=function(v61) local v62=0;while true do if (v62==0) then print(v61);v4=v61;break;end end end});local v37=v30:CreateButton({Name="Redeem Starter Toon",Callback=function() local v63=0;local v64;while true do if (v63==(1265 -(243 + 1022))) then v64={[3 -2 ]=v4};game:GetService("ReplicatedStorage"):WaitForChild("EarnTutorialTower"):InvokeServer(unpack(v64));v63=1;end if (v63==(2 + 0)) then hum.Health=1180 -(1123 + 57) ;break;end if (v63==(1 + 0)) then game:GetService("ReplicatedStorage"):WaitForChild("CheckTutorial"):InvokeServer();wait(0.5);v63=2;end end end});local v38=v30:CreateButton({Name="Redeem Codes | 2200 Ichor",Callback=function() local v65=0;while true do if (v65==(257 -(163 + 91))) then game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("ICHOR");break;end if (v65==(1932 -(1869 + 61))) then game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("TENMILLION");game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("ONETHOUSAND");v65=3;end if (v65==0) then game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("SKINTICKET");game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("2HUNDREDMILLION");v65=1 + 0 ;end if (v65==(3 -2)) then game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("HUNDREDMILLION");game:GetService("ReplicatedStorage").Events.CodeEvent:FireServer("FIFTYMILLION");v65=2;end end end});local v39=v31:CreateLabel("Player Settings");local v40=v31:CreateSlider({Name="Change WalkSpeed",Range={10,125},Increment=2.5,Suffix="Speed",CurrentValue=20 -5 ,Flag="Slider1",Callback=function(v66) while task.wait(0 + 0 ) do v3.WalkSpeed=v66;end end});local v41=v31:CreateLabel("Fly");local v42=v31:CreateToggle({Name="Fly Toggle | Q = Down, E = Up",CurrentValue=false,Flag="FlyToggle",Callback=function(v67) v6=v67;if v6 then v20();elseif v5 then v5:Destroy();end end});local v43=v31:CreateToggle({Name="Fly Buttons | For Mobile",CurrentValue=false,Flag="FlyButtonsToggle",Callback=function(v68) v7=v68;v25();end});local v44=v31:CreateSlider({Name="Button Size",Range={1001 -(140 + 831) ,818 -(15 + 703) },Increment=1 + 0 ,Suffix="pixels",CurrentValue=v8,Flag="Slider1",Callback=function(v69) local v70=438 -(262 + 176) ;while true do if (v70==(1721 -(345 + 1376))) then v8=v69;v25();break;end end end});local v45=v31:CreateSlider({Name="Platform Transparency",Range={0 -0 ,1},Increment=0.05,Suffix=" ",CurrentValue=v9,Flag="Slider1",Callback=function(v71) v9=v71;if v5 then v5.Transparency=v9;end end});local v46=v31:CreateSlider({Name="Height Speed",Range={0.1,20 -10 },Increment=0.1,Suffix="stud/s",CurrentValue=v12,Flag="HSslider",Callback=function(v72) v12=v72;end});local v47=v31:CreateLabel("Misc.");local v48=v31:CreateButton({Name="Give Dandy",Callback=function() game:GetService("Players").LocalPlayer:Kick("Dandy Has Been Given, Rejoin Game.");end});game:GetService("RunService").RenderStepped:Connect(function() if v6 then local v82=1262 -(1091 + 171) ;while true do if (v82==(1 + 0)) then v24();break;end if (v82==(0 -0)) then v21();v22();v82=3 -2 ;end end end end);local v49=v33:CreateButton({Name="Join the Discord!",Callback=function() setclipboard("discord.gg/dandysworldexploits");end});local v50=v33:CreateLabel("Rode Striker");local v51=v33:CreateLabel("Credits to ega_biba for the Fly Script");
